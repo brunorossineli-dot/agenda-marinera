@@ -6,7 +6,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Marinera">
-<meta name="theme-color" content="#6B1F33">
+<meta name="theme-color" content="#2B1C15">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" href="icon-192.png">
@@ -16,22 +16,16 @@
 <style>
 /* Layout: app de una columna para iPhone — cabecera fija con tira de días, contenido, barra de pestañas abajo */
 :root{
-  --bur:#6B1F33; --bur-2:#8A3A4E; --gold:#B8893B; --upc:#5F6B7A; --ev:#2F7A6B;
-  --bg:#FBF7F1; --surface:#FFFFFF; --ink:#2B2326; --mut:#73666A; --line:#EADFCF; --chip:#F3EBDF;
-  --on-bur:#FFFFFF; --on-gold:#241A08; --now:#C2410C;
+  /* Paleta salón premium: oro brillante #D4AF37 + negro café #2B1C15, también como fondos */
+  --bur:#D4AF37; --bur-2:#F2D98A; --gold:#F2D98A; --upc:#A08575; --ev:#D4AF37;
+  --bg:#2B1C15; --surface:#36251C; --ink:#F7F1E8; --mut:#C4AE9A; --line:#4C3729; --chip:#3E2A21;
+  --on-bur:#2B1C15; --on-gold:#2B1C15; --now:#FB923C;
+  --gold-metal:linear-gradient(100deg,#B8901F 0%,#F2D98A 38%,#D4AF37 62%,#8C6A14 100%);
   --f-display:"Montserrat",system-ui,-apple-system,sans-serif;
   --f-body:"Inter",system-ui,-apple-system,sans-serif;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bur:#C9667F; --bur-2:#E08AA0; --gold:#D9A85A; --upc:#8C99AA; --ev:#4FB39E;
-  --bg:#161113; --surface:#211A1D; --ink:#F2E9EB; --mut:#A99A9E; --line:#3A2E33; --chip:#2B2226;
-  --on-bur:#1B0F13; --on-gold:#1B1406; --now:#FB923C; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bur:#C9667F; --bur-2:#E08AA0; --gold:#D9A85A; --upc:#8C99AA; --ev:#4FB39E;
-  --bg:#161113; --surface:#211A1D; --ink:#F2E9EB; --mut:#A99A9E; --line:#3A2E33; --chip:#2B2226;
-  --on-bur:#1B0F13; --on-gold:#1B1406; --now:#FB923C; color-scheme:dark}
-*{box-sizing:border-box}
-:root{padding-top:env(safe-area-inset-top,0px);color-scheme:light}
+:root{padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;-webkit-text-size-adjust:100%}
 [hidden]{display:none!important}
 html,body{height:100%}
@@ -40,9 +34,10 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .wrap{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--bur)}
 .top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-block:14px 8px}
-.brand{font-family:var(--f-display);font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--bur)}
+.brand{font-family:var(--f-display);font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--bur);background:var(--gold-metal);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.brand small{-webkit-text-fill-color:var(--mut)}
 .brand small{display:block;font-family:var(--f-body);font-weight:500;letter-spacing:.02em;text-transform:none;color:var(--mut);font-size:12px;margin-top:2px}
 .today-btn{font-size:13px;font-weight:600;color:var(--bur);padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
 h1{font-family:var(--f-display);font-weight:800;font-size:24px;line-height:1.15;margin:0;text-wrap:balance}
@@ -123,7 +118,7 @@ main{padding-block:14px 110px}
 .vt{display:flex;gap:6px;margin-bottom:12px}
 .vt button{flex:1;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-size:13px;font-weight:600;color:var(--mut)}
 .vt button[aria-pressed="true"]{background:var(--bur);color:var(--on-bur);border-color:var(--bur)}
-nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:6;background:#22160F;border-top:1px solid var(--bur);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
 nav.tabs .in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr)}
 nav.tabs button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0 10px;font-size:11.5px;font-weight:600;color:var(--mut)}
 nav.tabs button svg{width:22px;height:22px}
